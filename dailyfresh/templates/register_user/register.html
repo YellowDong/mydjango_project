@@ -1,6 +1,24 @@
 {%extends 'base_foot.html'%}
 {%block head%}
 	<script type="text/javascript" src="/static/register_user/js/register.js"></script>
+	<script>
+		$(function () {
+	      if ({{error_name}}==1){
+	          console.log('111')
+	        $('.error_tip')[0].html('用户名已存在 请重新输入用户名').show();
+	      }
+		  $('#user_input').blur(function () {
+		    if ($('#user_input').val().length==0){
+		        $('.error_tip').html('请输入用户名').show();
+		        name_error = false;
+			}else{
+		        $('.user_error').hide();
+		        name_error = true;
+			}
+          })
+		});
+
+	</script>
 {%endblock head%}
 
 {%block body%}

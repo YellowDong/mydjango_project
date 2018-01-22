@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>formtest</title>
+</head>
+<body>
+<form action="/form/form_handle/" method="post">
+    {%csrf_token%}
+    phone:
+    <input type="text" name="phone">
+    <br>
+    name:
+    <input type="text" name="name">
+    <br>
+    password:
+    <input type="text" name="password">
+    <br>
+    repassword:
+    <input type="text" name="repassword">
+    <br>
+    <input type="submit" name="提交">
+</form>
+
+</body>
+</html>

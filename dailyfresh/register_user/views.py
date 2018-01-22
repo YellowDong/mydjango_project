@@ -6,16 +6,24 @@ from django.http import HttpResponseRedirect
 
 
 def register(request):
-    return render(request, 'register_user/register.html')
+    username = request.COOKIES.get('username', '')
+    contex = {'title': '用户注册', 'error_name': 0, 'error_pwd': 0, 'username': username}
+    return render(request, 'register_user/register.html', contex)
 
 
 def register_handle(request):
     #接收用户输入
     post = request.POST
     username = post.get('user_name')
+    user = UserInfo.objects.filter(username=username)
+    if len(user) == 1:
+        contex = {'title': '用户注册', 'error_name': 1, 'error_pwd': 0, 'username': username}
+        return render(request, 'register_user/register.html', contex)
     pwd = post.get('pwd')
     cpwd = post.get('cpwd')
     email = post.get('email')
+
+
     #判断两次密码输入是否一至
     if pwd != cpwd:
         return redirect('/register/')
